@@ -1,23 +1,31 @@
-\documentclass{article}
-\usepackage{multicol}
-\usepackage{lipsum} % 用于生成示例文本
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{amsmath}
 
 \begin{document}
 
-% 标题部分，占据左边的两栏
-\begin{multicols}{3}
-\begin{minipage}{\dimexpr2\columnwidth+1\columnsep\relax}
-\section*{标题}
-\end{minipage}
-\columnbreak
-\begin{minipage}{\columnwidth}
-\lipsum[1] % 示例文本
-\end{minipage}
-\end{multicols}
+\begin{tikzpicture}
 
-% 切换到三栏布局
-\begin{multicols}{3}
-\lipsum[2-4] % 示例文本
-\end{multicols}
+    % 定义函数参数
+    \def\a{3}
+    \def\b{8}
+    \def\c{10}
+    
+    % 绘制函数
+    \draw[domain=-3:3,smooth,variable=\x,blue,thick] plot ({\x},{\a*\x^2 + \b*\x + \c}) node[right] {$f(x) = 3x^2 + 8x + 10$};
+
+    % 绘制导数（梯度）箭头
+    \foreach \x in {-2, -1, 0, 1, 2} {
+        \pgfmathsetmacro{\y}{\a*\x^2 + \b*\x + \c} % 计算函数值
+        \pgfmathsetmacro{\grad}{2*\a*\x + \b} % 计算导数值
+        
+        % 绘制箭头
+        \draw[->, red] (\x, \y) -- ++(1, \grad) node[above] {$\nabla f(x)$};
+    }
+
+    % 坐标轴
+    \draw[->] (-4,0) -- (4,0) node[right] {$x$};
+    \draw[->] (0,-10) -- (0,40) node[above] {$f(x)$};
+
+\end{tikzpicture}
 
 \end{document}
