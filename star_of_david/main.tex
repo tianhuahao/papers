@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{background}
+\usepackage{adjustbox}
+\usepackage{tikz}
+
+\backgroundsetup{
+  scale=0.2, % 控制背景图片的缩放
+  color=gray, % 背景图片的颜色（如果需要改变颜色，通常是黑色）
+  opacity=0.8, % 设置背景图片的透明度
+  angle=0, % 背景图片旋转角度
+  position=current page.south east, % 背景图片位置 (例如页面的底部)
+  vshift=17cm, % 垂直偏移量
+  hshift=-15cm, % 水平偏移量
+  contents={\includegraphics{figure/sfas2-pix.jpg}} % 背景图片的路径
+}
+
+\begin{document}
+
+% 使用 \stackrel 将 \nabla 放在 \Delta 上方
+\[
+\stackrel{\nabla}{\Delta}
+\]
+
+% 或者使用 \overset 实现相同效果
+\[
+\overset{\nabla}{\Delta}
+\]
+
+
+\texttt{latex}
+
+\[
+\mathclap{\raisebox{0.2ex}{$\Delta$}} \mathclap{\raisebox{-0.3ex}{$\nabla$}}
+\]
+
+
+\end{document}
